@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:08:25 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/23 17:35:08 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:33:22 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void ft_join(char **stash, char *buffer)
 */
 char    *ft_read(int fd, char *stash)
 {
-    char    buffer;
+    char    *buffer;
     int     bytes_read_counter;
 
     buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -83,27 +83,70 @@ char    *ft_read(int fd, char *stash)
     returns it as extracted_line var.
     5. after
 
+TO DO:
+    - ft_new_stat_str
  */
 
 char    *get_next_line(int fd)
 {
     static char *stash;
-    char        *extracted_line;
+    char        *extracted_line = NULL;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (NULL);
-    extracted_line = ft_read(fd, extracted_str);
+    extracted_line = ft_read(fd, extracted_line);
     if (!extracted_line || !*extracted_line)
     {
         free(stash);
         stash = NULL;
         return (NULL);
     }
-    // extracted_line = ft_extract_line(stash);
-    stash = //ft_new_stash?
+    extracted_line = ft_extract_line(stash);
+    stash = ft_remove_extracted_line_from_stash(stash);
     return(extracted_line);
 }
 /*
 RETURN VALUE: Read line: correct behavior
 NULL: there is nothing else to read, or an error
 */
+
+/*test main function*/
+
+#include <stdio.h>
+#include <fcntl.h>
+
+
+int main(void)
+{
+	char	*temp;
+	int	fd;
+
+	fd = open("test1.txt", O_RDONLY);
+	if (fd > 0)
+	temp = get_next_line(fd);
+	printf("%s", temp);
+	free(temp);
+
+
+
+	printf("\n");
+	temp = get_next_line(fd);
+	printf("%s", temp);
+	free(temp);
+	printf("\n");
+
+	temp = get_next_line(fd);
+	printf("%s", temp);
+	free(temp);
+	printf("\n");
+	while(1)
+	{
+		temp = get_next_line(fd);
+		if (!temp)
+		break ;
+		printf("%s", temp);
+		free(temp);
+	}
+	return (0);
+}
+

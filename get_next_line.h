@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:15:37 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/22 14:15:43 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:32:45 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,14 @@
 #  define BUFFER_SIZE 1000
 # endif
 
+/*get_next_line*/
+char	*ft_read(int fd, char *str);
+char	*get_next_line(int fd);
+/*get_next_line_utils*/
+int		ft_strlen(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
+char	*ft_extract_line(char *stash);
+char	*ft_remove_extracted_line_from_stash(char *stash);
 
 #endif
