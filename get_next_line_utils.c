@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:15:47 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/27 15:04:00 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:20:01 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,14 @@ char    *ft_remove_extracted_line_from_stash(char *stash)
         free(stash);
         return (NULL);
     }
-    new_str = malloc(sizeof(char) * (ft_strlen(stash) - i));
+    new_str = malloc(sizeof(char) * (ft_strlen(stash + i)));
     if (!new_str)
         return (NULL);
     i++;
     j = 0;
     while (stash[i])
-        new_str[j] = stash[i++];
+        new_str[j++] = stash[i++];
     new_str[j] = '\0';
     free(stash);
-    return (new_str);
+	return (new_str);
 }

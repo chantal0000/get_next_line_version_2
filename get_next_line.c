@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:08:25 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/27 14:57:55 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:16:20 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ NULL: there is nothing else to read, or an error
 */
 
 /*test main function*/
-
+/*
 int main(void)
 {
 	char	*temp;
@@ -122,7 +122,7 @@ int main(void)
 
 	fd = open("test1.txt", O_RDONLY);
 	if (fd > 0)
-        printf("%d\n", fd);
+//        printf("%d\n", fd);
 	while(1)
 	{
 		temp = get_next_line(fd);
@@ -133,5 +133,5 @@ int main(void)
 		free(temp);
 	}
 	return (0);
-}
+}*/
 
