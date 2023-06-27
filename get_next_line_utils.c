@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:15:47 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/27 15:20:01 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:37:47 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,28 +115,28 @@ portion of the string after '\n'
 
 char    *ft_remove_extracted_line_from_stash(char *stash)
 {
-    char    *new_str;
-    int     i;
-    int     j;
+	char	*new_str;
+	int		i;
+	int		j;
 
-    i = 0;
-    if (!stash)
-        return (NULL);
-    while(stash[i] && stash[i] != '\n')
-        i++;
-    if (stash[i] == '\0')
-    {
-        free(stash);
-        return (NULL);
-    }
-    new_str = malloc(sizeof(char) * (ft_strlen(stash + i)));
-    if (!new_str)
-        return (NULL);
-    i++;
-    j = 0;
-    while (stash[i])
-        new_str[j++] = stash[i++];
-    new_str[j] = '\0';
-    free(stash);
+	i = 0;
+	if (!stash)
+		return (NULL);
+	while(stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\0')
+	{
+		free(stash);
+		return (NULL);
+	}
+	new_str = malloc(sizeof(char) * (ft_strlen(stash + i)));
+	if (!new_str)
+		return (NULL);
+	i++;
+	j = 0;
+	while (stash[i])
+		new_str[j++] = stash[i++];
+	new_str[j] = '\0';
+	free(stash);
 	return (new_str);
 }
