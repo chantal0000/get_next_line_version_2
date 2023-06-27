@@ -6,13 +6,12 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:15:47 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/27 15:37:47 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:04:49 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
+
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -26,30 +25,29 @@ int	ft_strlen(char *str)
 }
 
 /*combine the content of stash with the newly read content form fileat*/
-char    *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-    char    *result;
-    int     i;
-    int     j;
+	char	*result;
+	int		i;
+	int		j;
 
-    i = 0;
-    j = 0;
-    result = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-    if (!result)
-        return (0);
-    while (s1[i])
-    {
-        result[i] = s1[i];
-        i++;
-    }
-    while (s2[j])
-    {
-        result[i + j] = s2[j];
-        j++;
-    }
-    result[i + j] = '\0';
-    return (result);
-
+	i = 0;
+	j = 0;
+	result = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!result)
+		return (0);
+	while (s1[i])
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		result[i + j] = s2[j];
+		j++;
+	}
+	result[i + j] = '\0';
+	return (result);
 }
 
 /*finding the new line by strchr*/
@@ -72,39 +70,44 @@ char	*ft_strchr(char *s, int c)
 }
 
 /*
-extracts a single line incl newline char and returns new string
+extracts a single line incl newline char
+and returns new string
 + 2 -> for the \n and nulltermintor
-extracts a line from the stash string by iterating through it until it encounters
-a newline character \n or reaches the end of the string. It then dynamically
-allocates memory for the extracted line and copies the characters from stash
-into new_str. Finally, it adds a newline character \n at the end of new_str before
+extracts a line from the stash string
+by iterating through it until it encounters
+a newline character \n or reaches the end of the string.
+It then dynamically
+allocates memory for the extracted line and
+copies the characters from stash
+into new_str. Finally, it adds a newline character \n
+at the end of new_str before
 returning it.
 */
 
-char    *ft_extract_line(char   *stash)
+char	*ft_extract_line(char *stash)
 {
-    int     i;
-    char    *new_str;
+	int		i;
+	char	*new_str;
 
-    i = 0;
-    while (stash[i] && stash[i] != '\n')
-        i++;
-    new_str = malloc(sizeof(char) * (i + 2));
-    if (!new_str)
-        return (NULL);
-    i = 0;
-    while (stash[i] && stash[i] != '\n')
-    {
-        new_str[i] = stash[i];
-        i++;
-    }
-     if (stash[i] == '\n')
-    {
-        new_str[i] = stash[i];
-        i++;
-    }
-    new_str[i] = '\0';
-    return (new_str);
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	new_str = malloc(sizeof(char) * (i + 2));
+	if (!new_str)
+		return (NULL);
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+	{
+		new_str[i] = stash[i];
+		i++;
+	}
+	if (stash[i] == '\n')
+	{
+		new_str[i] = stash[i];
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
 }
 
 /*
@@ -113,7 +116,7 @@ Subtracting i from ft_strlen(stat_str) gives the length of the remaining
 portion of the string after '\n'
 */
 
-char    *ft_remove_extracted_line_from_stash(char *stash)
+char	*ft_remove_extracted_line_from_stash(char *stash)
 {
 	char	*new_str;
 	int		i;
@@ -122,7 +125,7 @@ char    *ft_remove_extracted_line_from_stash(char *stash)
 	i = 0;
 	if (!stash)
 		return (NULL);
-	while(stash[i] && stash[i] != '\n')
+	while (stash[i] && stash[i] != '\n')
 		i++;
 	if (stash[i] == '\0')
 	{
