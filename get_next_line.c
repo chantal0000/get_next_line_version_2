@@ -6,24 +6,27 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:08:25 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/26 15:33:22 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:57:55 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <fcntl.h>
 /*Write a function that returns a line read from a
 file descriptor*/
 
 #include "get_next_line.h"
 
-/**/
+/*
 static void ft_join(char **stash, char *buffer)
 {
     char *temp;
 
     temp = ft_strjoin(*stash, buffer);
+    // loop
     free(*stash);
     *stash = temp;
-}
+}*/
 
 /*reading lines from the file descriptor, appends (anhaengen) them to the existing
     1. buffer check...
@@ -36,7 +39,6 @@ static void ft_join(char **stash, char *buffer)
     7. search for new line
     8. repeat if not found
     9. finished reading from the file so we can free buffer
-
 */
 char    *ft_read(int fd, char *stash)
 {
@@ -53,13 +55,14 @@ char    *ft_read(int fd, char *stash)
         if (!stash)
             stash = ft_strjoin("", buffer);
         else
-            ft_join(&stash, buffer);
+            //ft_join(&stash, buffer);
+           stash = ft_strjoin(stash, buffer);
         if (ft_strchr(stash, '\n'))
             break ;
         bytes_read_counter = read(fd, buffer, BUFFER_SIZE);
     }
     free(buffer);
-    if (bytes_read_counter == -1)
+    if (bytes_read_counter == -1 && stash != 0)
     {
         free(stash);
         return (NULL);
@@ -90,12 +93,12 @@ TO DO:
 char    *get_next_line(int fd)
 {
     static char *stash;
-    char        *extracted_line = NULL;
+    char        *extracted_line;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (NULL);
-    extracted_line = ft_read(fd, extracted_line);
-    if (!extracted_line || !*extracted_line)
+    stash = ft_read(fd, stash);
+    if (!stash || !*stash)
     {
         free(stash);
         stash = NULL;
@@ -112,10 +115,6 @@ NULL: there is nothing else to read, or an error
 
 /*test main function*/
 
-#include <stdio.h>
-#include <fcntl.h>
-
-
 int main(void)
 {
 	char	*temp;
@@ -123,28 +122,14 @@ int main(void)
 
 	fd = open("test1.txt", O_RDONLY);
 	if (fd > 0)
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-
-
-
-	printf("\n");
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	printf("\n");
-
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	printf("\n");
+        printf("%d\n", fd);
 	while(1)
 	{
 		temp = get_next_line(fd);
 		if (!temp)
-		break ;
+		    break ;
 		printf("%s", temp);
+//         printf("%d\n", fd);
 		free(temp);
 	}
 	return (0);

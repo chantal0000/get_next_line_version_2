@@ -6,12 +6,13 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:15:47 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/26 15:18:28 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:04:00 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+#include <stdio.h>
+#include <fcntl.h>
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -31,16 +32,16 @@ char    *ft_strjoin(char *s1, char *s2)
     int     i;
     int     j;
 
+    i = 0;
+    j = 0;
     result = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
     if (!result)
-        return (NULL);
-    i = 0;
+        return (0);
     while (s1[i])
     {
         result[i] = s1[i];
         i++;
     }
-    j = 0;
     while (s2[j])
     {
         result[i + j] = s2[j];
@@ -48,6 +49,7 @@ char    *ft_strjoin(char *s1, char *s2)
     }
     result[i + j] = '\0';
     return (result);
+
 }
 
 /*finding the new line by strchr*/
@@ -101,7 +103,7 @@ char    *ft_extract_line(char   *stash)
         new_str[i] = stash[i];
         i++;
     }
-    new_str[i] = '\n';
+    new_str[i] = '\0';
     return (new_str);
 }
 
