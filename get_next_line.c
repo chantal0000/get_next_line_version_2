@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:08:25 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/27 17:05:24 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:50:16 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ NULL: there is nothing else to read, or an error
 */
 
 /*test main function*/
-/*
+
 #include <stdio.h>
 #include <fcntl.h>
 int main(void)
@@ -140,4 +140,4 @@ int main(void)
 		free(temp);
 	}
 	return (0);
-}*/
+}
