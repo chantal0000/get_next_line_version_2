@@ -119,7 +119,7 @@ NULL: there is nothing else to read, or an error
 */
 
 /*test main function*/
-
+/*
 #include <stdio.h>
 #include <fcntl.h>
 int main(void)
@@ -140,4 +140,4 @@ int main(void)
 		free(temp);
 	}
 	return (0);
-}
+}*/
